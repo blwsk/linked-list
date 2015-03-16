@@ -5,13 +5,6 @@ int main() {
   List l;
   l = newList();
 
-  char a = 'a';
-  char b = 'b';
-  char c = 'c';
-  add(l, &a);
-  add(l, &b);
-  add(l, &c);
-
   return 0;
 }
 
@@ -21,6 +14,7 @@ List newList(void) {
   new = (List)malloc(sizeof(List));
 
   Node_t *head;
+  head = (Node_t *)malloc(sizeof(Node_t));
   head->data = NULL;
   head->next = NULL;
   head->prev = NULL;
