@@ -1,37 +1,56 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <assert.h>
 
 
-/* Generic doubly linked list node */
+/*
+  Generic doubly linked list node
+*/
 typedef struct node {
   void * data;
   struct node *prev;
   struct node *next;
-}Node;
-
-
-/* List structure */
-typedef struct list {
-  struct node *head;
-}List;
-
-
-/* "Constructors" for Node and List */
-Node * newNode(void *data, Node *prev, Node *next);
-List * newList(Node *head);
+}Node_t;
 
 /*
-  Interface for doubly linked list functions
-    - traverse the list using the next field (forward traversal)
-    - traverse the list using the prev field (backward traversal)
-    - insert a node at the end of the list
-    - delete a node from the list
-    - return the item from a particular node in the list
-    - etc.
+  Generic doubly linked list structure
 */
+typedef struct list {
+  Node_t *head;
+}List_t;
+
+typedef List_t * List;
 
 
-void add(List *list, Node *node);
-void printList(List *list);
+/*
+  Returns a new list
+*/
+List newList(void);
 
+/*
+  Adds a new node to the list with payload item
+*/
+void add(List list, void *item);
+
+/*
+  Returns the number of nodes in the list
+*/
+int length(List list);
+
+/*
+  The following functions traverse the list forwards (next) 
+  and backwards (prev)
+*/
+Node_t * next(Node_t *node);
+Node_t * prev(Node_t *node);
+
+/*
+  Deletes the node from its list
+*/
+void del(Node_t *node);
+
+/*
+  Returns the data payload for node
+*/
+void * data(Node_t *node);
 
